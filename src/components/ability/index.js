@@ -1,43 +1,77 @@
-import { useState, useEffect } from 'react'
-import getAbility from '../../service/get-ability'
+import { useState, useEffect, useContext } from 'react'
+import getAbilities from '../../service/get-ability'
+import styled from 'styled-components'
+import { ThemeContext } from '../../contexts/theme-context'
 
-function Ability(props) {
-    const [ ability, setAbility ] = useState({
-        effect_entries: [ {
-                effect: '',
-                language: {
-                    name:''
-                }
-            } ],
-        name: '',
-    })
+function Abilities(props) {
+
+    const { theme } = useContext(ThemeContext)
+
+    const [abilities, setAbilities] = useState(
+        [
+            {
+                effect_entries: [{
+                    effect: '',
+                    language: {
+                        name: ''
+                    }
+                }],
+                name: ''
+            }
+        ]
+    )
 
     useEffect(() => {
-        async function fetchAbility() {
-            console.log('INDO PARA O FETCH (props.ability):', props.ability)
-            console.log('props.ability.length:', props.ability.length)
-            const newAbility = await getAbility(props.ability)
-            if (newAbility === undefined) {
-                return
-            } else {
-                setAbility(newAbility)
-            }
+        async function fetchAbilities() {
+            const newAbilities = await getAbilities(props.abilities)
+            setAbilities(newAbilities)
         }
-        fetchAbility()
+        fetchAbilities()
     }, [])
 
-    console.log('Ability fora do useEffect', ability)
     return (
-        <>
-            {ability.name} - {ability.effect_entries.map((effect_entrie, index) => {
-                                            return (
-                                                effect_entrie.language.name === 'en' ?                                             
-                                                <span key={index}>{effect_entrie.effect}</span>
-                                                : <span></span>
-                                            )
-                                        })}
-        </>
+        <Ul>
+            {abilities.map((item, index) => {
+                if (item.name.length > 0) {
+                return (
+                    <Li style={{ color: theme.abilitiesColor, background: theme.abilitiesBackground }}>
+                        <Name key={index}>
+                            {item.name}
+                        </Name>
+                        {item.effect_entries.filter((entrie) => entrie.language.name === 'en').map((item) => {
+                            return (
+                                <P>{item.effect}</P>
+                            )
+                        })}
+                    </Li>
+                )}
+            })} 
+        </Ul>
     )
 }
 
-export default Ability
+const Ul = styled.ul`
+    max-width: 80%;
+    text-align: left;
+    list-style-type: square;
+    display: flex;
+    flex-flow: row wrap;
+    gap: 20px;
+    justify-content: center;
+`
+const Li = styled.li`
+    padding: 20px;
+    width: 45%;
+    min-width: 200px;
+    border-radius: 10px;
+`
+const Name = styled.p`
+    text-transform: capitalize;
+    padding-bottom: 5px;
+    font-weight: 700;
+`
+
+const P = styled.p`
+    font-weight: 300;
+`
+export default Abilities

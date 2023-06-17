@@ -1,21 +1,15 @@
-import styled from 'styled-components'
+import { Button } from '../button'
+import { ThemeContext } from '../../contexts/theme-context'
+import { useContext } from 'react'
 
 export default function LoadMoreBtn(props) {
+
+    const { theme } = useContext(ThemeContext)
     function LoadMoreFunction() {
         props.action()
     }
 
     return (
-        <Button onClick={LoadMoreFunction}>Load more</Button>
+        <Button onClick={LoadMoreFunction} style={{ color: theme.color, backgroundColor: theme.background, fontSize: 17, padding: 12 }}>Load more</Button>
     )
 }
-
-const Button = styled.button`
-    padding: 10px 20px;
-    background-color: #f6f6f6;
-    border: 2px solid cadetblue;
-    border-radius: 5px;
-    margin: auto;
-    font-size: 20px;
-    cursor: pointer;
-`

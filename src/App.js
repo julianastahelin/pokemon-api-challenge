@@ -1,12 +1,13 @@
 import './App.css'
-import TopHeader from './components/header'
-import AppRoutes from './pages/routes';
+import AppRoutes from './pages/routes'; 
+import { ThemeProvider } from './contexts/theme-context';
 
 function App() {
   return (
     <>
-      <TopHeader />
-      <AppRoutes />
+      <ThemeProvider>
+        <AppRoutes />
+      </ThemeProvider>
     </>
   );
 }

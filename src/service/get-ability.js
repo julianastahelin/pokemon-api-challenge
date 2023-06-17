@@ -1,13 +1,9 @@
-async function getAbility(ability) {
-    if (ability.length > 0) {
-    console.log('vou dar o fetch em:', ability)
-    const response = await fetch(`https://pokeapi.co/api/v2/ability/${ability}`)
-    const abilityObject = await response.json()
-    console.log('object retornado dentro do getAbility:', abilityObject)
-    return abilityObject
-    } else { 
-        return
-    }
+async function getAbilities(pokemonAbilities) {
+    const urlsFetched = pokemonAbilities.map(async(item) => {
+        const ability = await fetch(item.ability.url)
+        return await ability.json()
+    }) 
+    return await Promise.all(urlsFetched)
 }
 
-export default getAbility
+export default getAbilities

@@ -1,11 +1,13 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import getSinglePokemon from '../../service/get-single-pokemon'
 import { useParams } from 'react-router-dom'
-import { Link } from 'react-router-dom'
-import Ability from '../ability'
+import Abilities from '../ability'
 import styled from 'styled-components'
+import { ThemeContext } from '../../contexts/theme-context'
 
-function SinglePokemon() {
+function SinglePokemon(props) {
+
+    const { theme } = useContext(ThemeContext)
     const [pokemon, setPokemon] = useState({
         name: '',
         moves: [{
@@ -38,48 +40,53 @@ function SinglePokemon() {
     useEffect(() => {
         async function fetchData() {
             let newPokemon = await getSinglePokemon(name)
-            setPokemon(newPokemon)
-            console.log('newPokemon:', newPokemon)
+            newPokemon ? setPokemon(newPokemon) : setPokemon({
+                name: 'Oops! Pokemón not found',
+                moves: [],
+                sprites: {
+                    other: {
+                        dream_world: {
+                            front_default: ''
+                        }
+                    }
+                },
+                abilities: [],
+                types: []
+            })
+
         }
         fetchData()
-    }, [])
+    }, [props.name])
 
     return (
-        <Section className='single-pokemon'>
-            <PokemonContainer className='pokemon-container'>
+        <Section style={{ color: theme.background, backgroundColor: theme.color }}>
+            <PokemonContainer style={{ color: theme.color, backgroundColor: theme.background }}>
                 <H2>{pokemon.name}</H2>
-                <Image src={pokemon.sprites.other.dream_world.front_default} />
-                <P>Moves:</P>
-                <MovesList className='moves'>
-                    {pokemon.moves.map((move, index) => {
-                        return (
-                            <li key={index}>{move.move.name}</li>
-                        )
-                    }
-                    )}
-                </MovesList>
-                <P>Abilities:</P>
-                <AbilitiesList>
-                    {pokemon.abilities ? pokemon.abilities.map((ability, index) => {
-                        return (
-                            <li key={index}>
-                                {/* <Ability ability={"torrent"}/> */}
-                                {console.log('SENDING ABILITY:', ability.ability.name)}
-                                <Ability ability={ability.ability.name}/>
-                            </li>
-                        )
-                    }) : 'No abilities'}
-                </AbilitiesList>
-                <P>Type:</P>
-                <TypesList>
-                    {pokemon.types.map((type, index) => {
-                        return (
-                            <li key={index}>{type.type.name}</li>
-                        )
-                    })}
-                </TypesList>
+                {pokemon.name !== 'Oops! Pokemón not found' && pokemon.moves.length > 1 ?
+                    <>
+                        <Image src={pokemon.sprites.other.dream_world.front_default} />
+                        <P>Moves</P>
+                        <MovesList>
+                            {pokemon.moves ? pokemon.moves.map((move, index) => {
+                                return (
+                                    <Li key={index}>{move.move.name}</Li>
+                                )
+                            }
+                            ) : 'No moves'}
+                        </MovesList>
+                        <P>Abilities</P>
+                        {pokemon.abilities ? <Abilities abilities={pokemon.abilities} /> : 'No abilities'}
+                        <P>Type</P>
+                        <TypesList>
+                            {pokemon.types ? pokemon.types.map((type, index) => {
+                                return (
+                                    <li key={index}>{type.type.name}</li>
+                                )
+                            }) : 'No tipes'}
+                        </TypesList>
+                    </>
+                    : ''}
             </PokemonContainer>
-            <Link to='/' className='button'>Home</Link>
         </Section>
     )
 }
@@ -88,7 +95,7 @@ const Section = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 30px 0;
+    padding: 30px;
 `
 const PokemonContainer = styled.div`
     display: flex;
@@ -98,21 +105,25 @@ const PokemonContainer = styled.div`
     flex-wrap: wrap;
     gap: 10px;
     padding: 20px;
-    background-color: cadetblue;
-    width: 60%;
+    width: 720px;
+    max-width: 80%;
     margin-bottom: 30px;
     border-radius: 10px;
 `
 const H2 = styled.h2`
     font-size: 30px;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
     text-transform: capitalize;
+    max-width: 90%;
+    overflow-wrap: break-word;
 `
 const Image = styled.img`
     width: 200px;
+    max-width: 90%;
 `
 const P = styled.p`
-    font-size: 20px;
+    font-size: 24px;
+    padding-top: 30px;
     padding-bottom: 10px;
     text-transform: capitalize;
 `
@@ -120,15 +131,21 @@ const MovesList = styled.ul`
     columns: 3;
     column-width: 180px;
     list-style-type: square;
+    text-transform: capitalize;
 `
-const AbilitiesList = styled.ul`
-    max-width: 80%;
-    text-align: left;
-    list-style-type: square;
-`
+
 const TypesList = styled.ul`
     text-align: left;
-    list-style-type:square;
+    display: flex;
+    gap: 10px;
+    text-transform: capitalize;
+    flex-wrap: wrap;
+`
+
+const Li = styled.li`
+    border-left: 0.5px dashed;
+    padding-left: 20px;
+    font-weight: 300;
 `
 
 export default SinglePokemon
