@@ -36,7 +36,7 @@ function SinglePokemon(props) {
     })
 
     const { name } = useParams()
-
+    
     useEffect(() => {
         async function fetchData() {
             let newPokemon = await getSinglePokemon(name)
@@ -69,7 +69,7 @@ function SinglePokemon(props) {
                         <MovesList>
                             {pokemon.moves ? pokemon.moves.map((move, index) => {
                                 return (
-                                    <Li key={index}>{move.move.name}</Li>
+                                    <MoveLi key={index}>{move.move.name}</MoveLi>
                                 )
                             }
                             ) : 'No moves'}
@@ -80,7 +80,7 @@ function SinglePokemon(props) {
                         <TypesList>
                             {pokemon.types ? pokemon.types.map((type, index) => {
                                 return (
-                                    <li key={index}>{type.type.name}</li>
+                                    <TypeLi style={{ color: theme.typeColor, background: theme.typeBackground }} key={index}>{type.type.name}</TypeLi>
                                 )
                             }) : 'No tipes'}
                         </TypesList>
@@ -112,12 +112,12 @@ const PokemonContainer = styled.div`
 `
 const H2 = styled.h2`
     font-size: 30px;
-    padding-bottom: 20px;
     text-transform: capitalize;
     max-width: 90%;
     overflow-wrap: break-word;
 `
 const Image = styled.img`
+    padding-top: 20px;
     width: 200px;
     max-width: 90%;
 `
@@ -142,10 +142,15 @@ const TypesList = styled.ul`
     flex-wrap: wrap;
 `
 
-const Li = styled.li`
+const MoveLi = styled.li`
     border-left: 0.5px dashed;
     padding-left: 20px;
     font-weight: 300;
+`
+const TypeLi = styled.li`
+    padding: 10px;
+    min-width: 50px;
+    border-radius: 10px;
 `
 
 export default SinglePokemon

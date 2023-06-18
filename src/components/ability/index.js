@@ -34,7 +34,7 @@ function Abilities(props) {
             {abilities.map((item, index) => {
                 if (item.name.length > 0) {
                 return (
-                    <Li style={{ color: theme.abilitiesColor, background: theme.abilitiesBackground }}>
+                    <Li style={{ color: theme.abilityColor, background: theme.abilityBackground }}>
                         <Name key={index}>
                             {item.name}
                         </Name>

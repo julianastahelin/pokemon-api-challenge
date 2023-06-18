@@ -8,16 +8,20 @@ export const themes = {
         background: '#eeeeee',
         inputColor: 'cadetblue', 
         inputBackground: '#eee',
-        abilitiesColor: '#eee',
-        abilitiesBackground: 'cadetblue'
+        abilityColor: '#eee',
+        abilityBackground: 'cadetblue',
+        typeColor: '#fff',
+        typeBackground: '#90BDBF'
     },
     dark: { 
         color: '#fff', 
         background: 'cadetblue',
         inputColor: '#fff', 
         inputBackground: '#90BDBF',
-        abilitiesColor: '#fff',
-        abilitiesBackground: '#90BDBF'
+        abilityColor: '#fff',
+        abilityBackground: '#90BDBF',
+        typeColor: 'cadetblue',
+        typeBackground: '#fff'
     }
 }
 

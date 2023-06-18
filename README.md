@@ -16,6 +16,36 @@
 <h4>Mobile</h4>
 <a href=""><img src="design/design-mobile.gif" alt="gif of project displayed on mobile" style="width: 30%;"></a>
 
+<h3>How to use the project</h3>
+<ul>
+    <li>Clone the project:</li>
+        <span>Option 1: git clone</span>
+        <ul>
+            <li>Open the folder in your computer where you want to store the project;</li>
+            <li>Open terminal in this folder;</li>
+            <li>Paste the following command in the terminal and hit enter: <br />
+                <b>git clone https://github.com/julianastahelin/pokemon-api-challenge.git</b>
+            </li>
+            <li>Once it is done running, enter the project folder created: <br />
+                <b>cd pokemon-api-challenge</b>
+            </li>
+        </ul>
+        <span>Option 2: download files</span>
+        <ul>
+            <li>Click on "Clone" and then on "Download ZIP";</li>
+            <li>Open folder in your computer and click to Extract all files;</li>
+            <li>Open folder with files extracted and open the terminal inside that folder.</li>
+        </ul>
+    <li>Then, enter the following command to install the project dependencies: <br />
+        <b>npm install</b>
+    </li>
+    <li>Then, start the application in the local server: <br />
+         <b>npm start</b>
+    </li>
+    <li>Open folder in the text editor of your choice.</li>
+</ul>
+    
+
 <h3>Links</h3>
 <ul>
     <li>Live site URL: <a href=""></a></li>
@@ -28,6 +58,7 @@
 <ul>
     <li>React.js</li>
     <li>Styled components</li>
+    <li>CSS</li>
 </ul>
 
 <h3>What I practiced 💪🏽</h3>
