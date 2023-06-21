@@ -4,7 +4,6 @@ import { Button } from '../button'
 
 function ThemeTogglerButton() {
     const { theme, setTheme } = useContext(ThemeContext)
-    console.log('theme toggler button themes', theme)
 
     return(
         <div>

@@ -20,5 +20,6 @@ function PokemonByName() {
 const H2 = styled.h2`
     padding: 20px 23%;
     margin: auto;
+    word-wrap: break-word;
 `
 export { PokemonByName }

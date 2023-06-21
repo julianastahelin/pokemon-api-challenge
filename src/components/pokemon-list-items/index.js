@@ -1,0 +1,50 @@
+import { Link } from 'react-router-dom'
+import styled from 'styled-components'
+import { ThemeContext } from "../../contexts/theme-context"
+import { useContext } from 'react'
+
+const PokemonListItems = (props) => {
+    const { theme } = useContext(ThemeContext)
+    return (
+        <>
+            {props.pokemons.map((pokemon) => {
+                return (
+                    <PokemonContainer key={pokemon.name} style={{ color: theme.color, backgroundColor: theme.background }} >
+                        <Link to={`/pokemon/${pokemon.name}`} style={{ color: theme.color, textTransform: "capitalize" }}>
+                            <P>{pokemon.name}</P>
+                            <Div>
+                                <Image src={pokemon.sprites.other.dream_world.front_default} />
+                            </Div>
+                        </Link>
+                    </PokemonContainer>
+                )
+            })
+            }
+        </>
+    )
+}
+
+const PokemonContainer = styled.li`
+    background-color: cadetblue;
+    opacity: 0.9;
+    padding: 20px;
+    border-radius: 5px;
+    &:hover {
+        opacity: 0.8;
+        transform: scale(1.02);
+        transition: ease-in-out 0.2s
+    }
+`
+const P = styled.p`
+    font-size: 20px;
+    padding-bottom: 10px;
+`
+const Image = styled.img`
+    width: 150px;
+`
+const Div = styled.div`
+    display: flex;
+    height: 80%;
+`
+
+export default PokemonListItems

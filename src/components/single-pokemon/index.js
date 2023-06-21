@@ -8,6 +8,10 @@ import { ThemeContext } from '../../contexts/theme-context'
 function SinglePokemon(props) {
 
     const { theme } = useContext(ThemeContext)
+    const { name } = useParams()
+
+    const [ loading, setLoading ] = useState(false);
+
     const [pokemon, setPokemon] = useState({
         name: '',
         moves: [{
@@ -35,10 +39,11 @@ function SinglePokemon(props) {
         }]
     })
 
-    const { name } = useParams()
-    
+
+
     useEffect(() => {
         async function fetchData() {
+            setLoading(true)
             let newPokemon = await getSinglePokemon(name)
             newPokemon ? setPokemon(newPokemon) : setPokemon({
                 name: 'Oops! Pokemón not found',
@@ -53,7 +58,7 @@ function SinglePokemon(props) {
                 abilities: [],
                 types: []
             })
-
+            setLoading(false)
         }
         fetchData()
     }, [props.name])
@@ -61,31 +66,37 @@ function SinglePokemon(props) {
     return (
         <Section style={{ color: theme.background, backgroundColor: theme.color }}>
             <PokemonContainer style={{ color: theme.color, backgroundColor: theme.background }}>
-                <H2>{pokemon.name}</H2>
-                {pokemon.name !== 'Oops! Pokemón not found' && pokemon.moves.length > 1 ?
-                    <>
-                        <Image src={pokemon.sprites.other.dream_world.front_default} />
-                        <P>Moves</P>
-                        <MovesList>
-                            {pokemon.moves ? pokemon.moves.map((move, index) => {
-                                return (
-                                    <MoveLi key={index}>{move.move.name}</MoveLi>
-                                )
-                            }
-                            ) : 'No moves'}
-                        </MovesList>
-                        <P>Abilities</P>
-                        {pokemon.abilities ? <Abilities abilities={pokemon.abilities} /> : 'No abilities'}
-                        <P>Type</P>
-                        <TypesList>
-                            {pokemon.types ? pokemon.types.map((type, index) => {
-                                return (
-                                    <TypeLi style={{ color: theme.typeColor, background: theme.typeBackground }} key={index}>{type.type.name}</TypeLi>
-                                )
-                            }) : 'No tipes'}
-                        </TypesList>
-                    </>
-                    : ''}
+
+                {loading ? 
+                <svg style={{ fill: theme.color }} width="40" height="40" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><ellipse cx="12" cy="5" rx="4" ry="4"><animate id="spinner_jbYs" begin="0;spinner_JZdr.end" attributeName="cy" calcMode="spline" dur="0.375s" values="5;20" keySplines=".33,0,.66,.33" fill="freeze"/><animate begin="spinner_jbYs.end" attributeName="rx" calcMode="spline" dur="0.05s" values="4;4.8;4" keySplines=".33,0,.66,.33;.33,.66,.66,1"/><animate begin="spinner_jbYs.end" attributeName="ry" calcMode="spline" dur="0.05s" values="4;3;4" keySplines=".33,0,.66,.33;.33,.66,.66,1"/><animate id="spinner_ADF4" begin="spinner_jbYs.end" attributeName="cy" calcMode="spline" dur="0.025s" values="20;20.5" keySplines=".33,0,.66,.33"/><animate id="spinner_JZdr" begin="spinner_ADF4.end" attributeName="cy" calcMode="spline" dur="0.4s" values="20.5;5" keySplines=".33,.66,.66,1"/></ellipse></svg>
+                : 
+                <>
+                    <H2>{pokemon.name}</H2>
+                    {pokemon.name !== 'Oops! Pokemón not found' && pokemon.moves.length > 1 ?
+                        <>
+                            <Image src={pokemon.sprites.other.dream_world.front_default} />
+                            <P>Moves</P>
+                            <MovesList>
+                                {pokemon.moves ? pokemon.moves.map((move, index) => {
+                                    return (
+                                        <MoveLi key={index}>{move.move.name}</MoveLi>
+                                    )
+                                }
+                                ) : 'No moves'}
+                            </MovesList>
+                            <P>Abilities</P>
+                            {pokemon.abilities ? <Abilities abilities={pokemon.abilities} /> : 'No abilities'}
+                            <P>Type</P>
+                            <TypesList>
+                                {pokemon.types ? pokemon.types.map((type, index) => {
+                                    return (
+                                        <TypeLi style={{ color: theme.typeColor, background: theme.typeBackground }} key={index}>{type.type.name}</TypeLi>
+                                    )
+                                }) : 'No tipes'}
+                            </TypesList>
+                        </>
+                        : ''}
+                    </> }
             </PokemonContainer>
         </Section>
     )
@@ -114,7 +125,7 @@ const H2 = styled.h2`
     font-size: 30px;
     text-transform: capitalize;
     max-width: 90%;
-    overflow-wrap: break-word;
+    word-wrap: break-word;
 `
 const Image = styled.img`
     padding-top: 20px;

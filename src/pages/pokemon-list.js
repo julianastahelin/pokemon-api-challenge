@@ -1,8 +1,8 @@
-import { PokemonList } from "../components/pokemonList";
+import { PokemonListSection } from "../components/pokemon-list-section";
 
 function Pokemons() {
     return (
-        <PokemonList />
+        <PokemonListSection />
     )
 }
 

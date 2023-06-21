@@ -4,7 +4,6 @@ import styled from 'styled-components'
 
 export function Button(props) {
     const { theme } = useContext(ThemeContext);
-    console.log('button themes', theme)
 
     return(
         <Btn {...props} 

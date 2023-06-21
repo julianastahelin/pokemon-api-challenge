@@ -11,15 +11,15 @@ export const themes = {
         abilityColor: '#eee',
         abilityBackground: 'cadetblue',
         typeColor: '#fff',
-        typeBackground: '#90BDBF'
+        typeBackground: '#7bb7ba'
     },
     dark: { 
         color: '#fff', 
         background: 'cadetblue',
         inputColor: '#fff', 
-        inputBackground: '#90BDBF',
+        inputBackground: '#7bb7ba',
         abilityColor: '#fff',
-        abilityBackground: '#90BDBF',
+        abilityBackground: '#7bb7ba',
         typeColor: 'cadetblue',
         typeBackground: '#fff'
     }
