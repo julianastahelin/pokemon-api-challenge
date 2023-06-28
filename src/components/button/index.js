@@ -1,9 +1,6 @@
-import React, { useContext } from "react";
-import { ThemeContext } from "../../contexts/theme-context";
-import styled from 'styled-components'
+import styled from 'styled-components';
 
-export function Button(props) {
-    const { theme } = useContext(ThemeContext);
+function Button(props) {
 
     return(
         <Btn {...props} 
@@ -23,3 +20,4 @@ const Btn = styled.button`
             transition: ease-in-out 0.2s
         }
     `
+export default Button

@@ -1,23 +1,29 @@
-import { SearchForm } from "../search-form";
-import styled from 'styled-components'
+import { useContext,  forwardRef } from 'react';
+import styled from 'styled-components';
 import { ThemeContext } from "../../contexts/theme-context";
-import { useContext } from 'react'
 import SortByType from "../sort-by-type";
-// import { filterPokemons } from "../pokemon-list-section";
+import SearchForm from "../search-form";
 
-export default function SearchSection() {
-    const { theme } = useContext(ThemeContext)
+const SearchSection = forwardRef( (props, ref) => {
+    const { theme } = useContext(ThemeContext);
 
     return (
-        <Div style={{ color: theme.background, backgroundColor: theme.color }}>
-            {/* <SortByType action={filterPokemons}/> */}
+        <Div ref={ref} style={{ color: theme.background, backgroundColor: theme.color }}>
+            <SortByType resetType={props.resetType}/>
             <SearchForm />
         </Div>
     )
-}
+}) 
 
 const Div = styled.div`
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    align-items: center;
     padding: 20px 10% 0px;
+    gap: 20px;
+    @media (max-width: 360px) {
+        gap: 15px;
+    }
+    scroll-margin-top: 227px;
 `
+export default SearchSection

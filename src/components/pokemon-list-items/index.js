@@ -1,15 +1,17 @@
-import { Link } from 'react-router-dom'
-import styled from 'styled-components'
-import { ThemeContext } from "../../contexts/theme-context"
-import { useContext } from 'react'
+import { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import { ThemeContext } from "../../contexts/theme-context";
 
 const PokemonListItems = (props) => {
+
     const { theme } = useContext(ThemeContext)
+    
     return (
         <>
-            {props.pokemons.map((pokemon) => {
+            {props.pokemons.map((pokemon, index) => {
                 return (
-                    <PokemonContainer key={pokemon.name} style={{ color: theme.color, backgroundColor: theme.background }} >
+                    <PokemonContainer key={pokemon.name+index} style={{ color: theme.color, backgroundColor: theme.background }}>
                         <Link to={`/pokemon/${pokemon.name}`} style={{ color: theme.color, textTransform: "capitalize" }}>
                             <P>{pokemon.name}</P>
                             <Div>
@@ -39,12 +41,12 @@ const P = styled.p`
     font-size: 20px;
     padding-bottom: 10px;
 `
-const Image = styled.img`
-    width: 150px;
-`
 const Div = styled.div`
     display: flex;
     height: 80%;
+`
+const Image = styled.img`
+    width: 150px;
 `
 
 export default PokemonListItems

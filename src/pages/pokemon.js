@@ -6,4 +6,4 @@ function Pokemon() {
     )
 }
 
-export { Pokemon }
+export default Pokemon

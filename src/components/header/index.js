@@ -1,30 +1,40 @@
-import styled from 'styled-components'
-import { useContext } from 'react'
-import { ThemeContext } from '../../contexts/theme-context'
+import { useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import { FaHouse } from 'react-icons/fa6';
+import { ThemeContext } from '../../contexts/theme-context';
 import ThemeTogglerButton from '../theme-toggler-button';
-import { Button } from '../button'
-import { Link } from 'react-router-dom'
+import Button from '../button';
 
-function TopHeader() {
+function Header({resultReference, sendToParent}) {
 
-    const { theme } = useContext(ThemeContext)
+    const { theme } = useContext(ThemeContext);
+    const [ resetType, toggleType ] = useState(true);
+
+    function scrollTop() { 
+        resultReference.current.scrollIntoView({ behavior: 'smooth' });
+        resetType === true ? toggleType(false) : toggleType(true);
+        sendToParent(resetType);
+    }
 
     return (
-        <Header style={{ color: theme.color, backgroundColor: theme.background }} >
+        <Head style={{ color: theme.color, backgroundColor: theme.background }}>
             <H1>Pokédex</H1>
             <Nav>
                 <Link to='/'>
-                    <Button style={{ color: theme.background, backgroundColor: theme.color }}>Home</Button>
+                    <HomeButton style={{ color: theme.background, backgroundColor: theme.color }} onClick={scrollTop}>
+                        <FaHouse />
+                    </HomeButton>
                 </Link>
                 <ThemeTogglerButton />
             </Nav>
-        </Header>
+        </Head>
     )
 }
 
-const Header = styled.header`
+const Head = styled.header`
     text-align: center;
-    padding: 4% 5% 3%;
+    padding: 50px 60px 30px;
     position: sticky;
     top: 0;
     z-index: 1;
@@ -32,13 +42,17 @@ const Header = styled.header`
 const H1 = styled.h1`
     text-transform: uppercase;
 `
-
 const Nav = styled.nav`
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 5px;
-    padding: 10px 20px 0 0;
+    gap: 8px;
+    padding-top: 15px;
+`
+const HomeButton = styled(Button)`
+    font-size: 18px;
+    display: flex;
+    align-items: center;
 `
 
-export default TopHeader
+export default Header

@@ -1,27 +1,69 @@
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 import { ThemeContext } from '../../contexts/theme-context';
 
-function SortByType({action}) {
-    
-    const [value, setValue] = useState('All types');
-    const { theme } = useContext(ThemeContext)
-    useEffect(() => {
-        action(value)
-    }, [value])
+function SortByType(props) {
 
-    const typeButtons = ['pokemon', 'normal', 'fighting', 'flying', 'poison', 'ground', 'rock', 'bug', 'ghost', 'steel', 'fire', 'water', 'grass', 'electric', 'psychic', 'ice', 'dragon', 'dark', 'fairy']
+    const [type, setType] = useState('pokemon');
+    const navigate = useNavigate();
+    const { theme } = useContext(ThemeContext);
+
+    const typeButtons = ['pokemon', 'normal', 'fighting', 'flying', 'poison', 'ground', 'rock', 'bug', 'ghost', 'steel', 'fire', 'water', 'grass', 'electric', 'psychic', 'ice', 'dragon', 'dark', 'fairy'];
+
+    useEffect(() => {
+        if (type === 'pokemon') {
+            navigate('./')
+        } else {
+            navigate(`./type/${type}`)
+        }
+    }, [type])
+
+    useEffect(() => {
+        setType('pokemon')
+    }, [props.resetType])
+
+    function handleChange(e) {
+        setType(e.target.value)
+    }
 
     return (
-        <label>
-        Sort by tipe: <select value={value} onChange={(e) => setValue(e.target.value)} style={{ textTransform: 'capitalize' }}>
-            {typeButtons.map((type, index) => {
-                return (
-                    <option value={type} key={type + index} style={{ color: theme.color, backgroundColor: theme.background, textTransform: 'capitalize' }}>{type === 'pokemon' ? 'All types' : type}</option>
-                )
-            })}
-        </select>
-    </label>
+        <Label>
+            Sort by tipe: <Select value={type} onChange={handleChange} style={{
+                color: theme.typeBackground,
+                backgroundColor: theme.inputBackground
+            }}>
+                {typeButtons.map((type, index) => {
+                    return (
+                        <Option value={type} key={type + index} style={{ color: theme.typeBackground, backgroundColor: theme.inputBackground }}>{type === 'pokemon' ? 'Choose...' : type}</Option>
+                    )
+                })}
+            </Select>
+        </Label>
     )
 }
+
+const Label = styled.label`
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    @media (max-width: 687px) {
+        flex-direction: column;
+        align-items: flex-start;
+        font-size: 15px;
+    }
+`
+const Select = styled.select`
+    text-transform: capitalize;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    &:focus {
+        outline-color: cadetblue;
+    }
+`
+const Option = styled.option`
+    text-transform: capitalize;
+`
 
 export default SortByType

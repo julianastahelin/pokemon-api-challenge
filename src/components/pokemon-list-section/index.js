@@ -1,23 +1,22 @@
-import getPokemons from "../../service/get-pokemons"
-import { useState, useEffect, useContext } from 'react'
-import LoadMoreBtn from '../load-more-btn'
-import styled from 'styled-components'
-import { ThemeContext } from "../../contexts/theme-context"
-import PokemonListItems from "../pokemon-list-items"
-import { Button } from "../button"
-import SortByType from "../sort-by-type"
+import { useState, useEffect, useContext } from 'react';
+import { useParams } from 'react-router-dom';
+import styled from 'styled-components';
+import { ThemeContext } from "../../contexts/theme-context";
+import getPokemons from "../../service/get-pokemons";
+import PokemonListItems from "../pokemon-list-items";
+import LoadMoreBtn from '../load-more-btn';
 
 function PokemonListSection() {
 
+    const { theme } = useContext(ThemeContext);
+    const [searchString, setSearchString] = useState('pokemon');
+    const [click, setClick] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [list, setlist] = useState({
         pokemons: [],
         offset: 0
-    })
-
-    const [searchString, setSearchString] = useState('pokemon')
-    const [click, setClick] = useState(false)
-    const [loading, setLoading] = useState(false);
-    const { theme } = useContext(ThemeContext)
+    });
+    var { type } = useParams();
 
     useEffect(() => {
         async function fetchData() {
@@ -32,6 +31,17 @@ function PokemonListSection() {
         fetchData()
     }, [list.offset, click])
 
+    useEffect(() => {
+        if (type === undefined) {
+            type = 'pokemon'
+        }
+        setSearchString(type)
+        setlist(
+            { pokemons: [], offset: 0 }
+        )
+        setClick(click ? false : true)
+    }, [type])
+
     function handleClick() {
         setlist({
             ...list,
@@ -39,45 +49,9 @@ function PokemonListSection() {
         })
     }
 
-    function filterPokemons(type) {
-        setSearchString(type)
-        setlist(
-            { pokemons: [], offset: 0 }
-        )
-        setClick(click ? false : true)
-    }
-
-    // const typeButtons = ['pokemon', 'normal', 'fighting', 'flying', 'poison', 'ground', 'rock', 'bug', 'ghost', 'steel', 'fire', 'water', 'grass', 'electric', 'psychic', 'ice', 'dragon', 'dark', 'fairy']
-
-    // const [value, setValue] = useState('All types');
-
-    // useEffect(() => {
-    //     filterPokemons(value)
-    // }, [value])
-
     return (
         <>
-            <SortByType action={filterPokemons} />
-            {/* <label>
-                Sort by tipe: <select value={value} onChange={(e) => setValue(e.target.value)} style={{ textTransform: 'capitalize' }}>
-                    {typeButtons.map((type, index) => {
-                        return (
-                            <option value={type} key={type + index} style={{ color: theme.color, backgroundColor: theme.background, textTransform: 'capitalize' }}>{type === 'pokemon' ? 'All types' : type}</option>
-                        )
-                    })}
-                </select>
-            </label> */}
-
-            {/* <div style={{ display: 'flex', gap: 2, padding: 5, width: 80, backgroundColor: theme.color }} id="sort-items">
-                {typeButtons.map((type) => {
-                    return (
-                        <Button key={type} style={{ color: theme.color, backgroundColor: theme.background, textTransform: 'capitalize' }} onClick={() => filterPokemons(type)}>{type === 'pokemon' ? 'All types' : type}</Button>
-                    )
-                })}
-            </div> */}
-
-
-            <Section style={{ color: theme.background, backgroundColor: theme.color }}>
+            <Section style={{ color: theme.background, backgroundColor: theme.color, minHeight: window.innerHeight - 329}}>
                 <Ul>
                     <PokemonListItems pokemons={list.pokemons} />
                 </Ul>
@@ -97,8 +71,8 @@ const Section = styled.section`
     gap: 10px;
     padding: 20px;
     text-align: center;
+    min-height: window.innerHeight - 329
 `
-
 const Ul = styled.ul`
     display: flex;
     justify-content: center;
@@ -108,9 +82,4 @@ const Ul = styled.ul`
     text-align: center;
 `
 
-const Div = styled.div`
-    display: flex;
-    height: 80%;
-`
-
-export { PokemonListSection }
+export default PokemonListSection 

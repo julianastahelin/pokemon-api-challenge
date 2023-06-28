@@ -5,7 +5,7 @@
 <h2>Overview</h2>
 
 <h3>The project</h3>
-<p>The application provides a list of Pokémons. In order to see more Pokémons, user can click on "Load more" and new Pokémons are added to the list. By clicking on a Pokémon, user can see it's details such as moves, abilities and types. It is also possible to search Pokémons by name. If an invalid name is entered, an error message appears on screen. </p>
+<p>The application provides a list of Pokémons. In order to see more Pokémons, user can click on "Load more" and new Pokémons are added to the list. By clicking on a Pokémon, user can see it's details such as moves, abilities and types. It is also possible to sort Pokémons by type or search by name. If an invalid name is entered, an error message appears on screen. </p>
 
 <h3>Preview</h3>
 <h4>Desktop</h4>
@@ -56,16 +56,19 @@
 
 <h3>Built with 👩🏽‍💻</h3>
 <ul>
-    <li>React.js</li>
-    <li>Styled components</li>
-    <li>CSS</li>
+    <li>React.js;</li>
+    <li>Styled components;</li>
+    <li>CSS.</li>
 </ul>
 
 <h3>What I practiced 💪🏽</h3>
 <ul>
     <li>Building React components;</li>
-    <li>Using React hooks: useState, useEffect, useContext;</li>
+    <li>Using React hooks: useState, useEffect, useContext, useRef;</li>
     <li>Using Context API;</li>
+    <li>Fetching data from an API;</li>
     <li>Using React Router to build the routes in the Single Page Application;</li>
-    <li>Styling with Styled components.</li>
+    <li>Styling with Styled components;</li>
+    <li>Passing parameters from parent to child and from child to parent components;</li>
+    <li>Using Icons in React.</li>
 </ul>

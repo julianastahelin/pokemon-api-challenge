@@ -1,21 +1,33 @@
+import { useState, useRef } from 'react';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Pokemons } from "./pokemon-list";
-import { Pokemon } from "./pokemon"
-import TopHeader from '../components/header'
-import Footer from '../components/footer'
-import { PokemonByName } from "./search-by-name";
-import SearchSection from '../components/search-section'
+import Header from '../components/header';
+import Pokemons from "./pokemons";
+import Pokemon from "./pokemon";
+import PokemonByName from "./pokemon-by-name";
+import SearchSection from '../components/search-section';
+import BackToTopBtn from "../components/back-to-top-btn";
+import Footer from '../components/footer';
 
 function AppRoutes() {
+
+    const resultRef = useRef(null);
+    const [ type, setType ] = useState('');
+
+    function resetTypeAction(dataFromHeader) {
+        setType(dataFromHeader);
+    }
+ 
     return (
         <BrowserRouter>
-            <TopHeader />
-            <SearchSection />
+            <Header resultReference={resultRef} sendToParent={resetTypeAction} />
+            <SearchSection ref={resultRef} resetType={type} />
             <Routes>
                 <Route exact path="/" element={<Pokemons />} />
+                <Route exact path="/type/:type" element={<Pokemons />} />
                 <Route exact path="/pokemon/:name" element={<Pokemon />} />
                 <Route exact path="/pokemon/search/:name" element={<PokemonByName />} />
             </Routes>
+            <BackToTopBtn resultReference={resultRef} />
             <Footer />
         </BrowserRouter>
     )

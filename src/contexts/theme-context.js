@@ -11,7 +11,7 @@ export const themes = {
         abilityColor: '#eee',
         abilityBackground: 'cadetblue',
         typeColor: '#fff',
-        typeBackground: '#7bb7ba'
+        typeBackground: '#7bb7ba',
     },
     dark: { 
         color: '#fff', 
@@ -21,13 +21,14 @@ export const themes = {
         abilityColor: '#fff',
         abilityBackground: '#7bb7ba',
         typeColor: 'cadetblue',
-        typeBackground: '#fff'
+        typeBackground: '#fff',
     }
 }
 
 export function ThemeProvider(props) {
 
-    const [ theme, setTheme ] = useState(themes.dark)
+    const [ theme, setTheme ] = useState(themes.dark);
+
     return (
         <ThemeContext.Provider value={{theme, setTheme}}>
             {props.children}

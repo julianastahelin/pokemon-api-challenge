@@ -1,7 +1,6 @@
-import styled from 'styled-components'
-import { useContext } from 'react'
-import { ThemeContext } from '../../contexts/theme-context'
-
+import { useContext } from 'react';
+import styled from 'styled-components';
+import { ThemeContext } from '../../contexts/theme-context';
 
 function Footer() { 
 
@@ -16,12 +15,12 @@ function Footer() {
 
 const FooterBar = styled.footer`
     text-align: center;
-    padding: 5%;
+    padding: 50px 60px;
 `
 const A = styled.a`
     &:hover {
         opacity: 0.8;
-        transform: scale(1.02)
+        transform: scale(1.02);
     }
 `
 

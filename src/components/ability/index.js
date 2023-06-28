@@ -1,7 +1,7 @@
-import { useState, useEffect, useContext } from 'react'
-import getAbilities from '../../service/get-ability'
-import styled from 'styled-components'
-import { ThemeContext } from '../../contexts/theme-context'
+import { useState, useEffect, useContext } from 'react';
+import styled from 'styled-components';
+import { ThemeContext } from '../../contexts/theme-context';
+import getAbilities from '../../service/get-ability';
 
 function Abilities(props) {
 
@@ -34,13 +34,13 @@ function Abilities(props) {
             {abilities.map((item, index) => {
                 if (item.name.length > 0) {
                 return (
-                    <Li style={{ color: theme.abilityColor, background: theme.abilityBackground }}>
-                        <Name key={index}>
+                    <Li key={item+index} style={{ color: theme.abilityColor, background: theme.abilityBackground }}>
+                        <Name>
                             {item.name}
                         </Name>
                         {item.effect_entries.filter((entrie) => entrie.language.name === 'en').map((item) => {
                             return (
-                                <P>{item.effect}</P>
+                                <P key={item}>{item.effect}</P>
                             )
                         })}
                     </Li>
@@ -53,17 +53,27 @@ function Abilities(props) {
 const Ul = styled.ul`
     max-width: 80%;
     text-align: left;
-    list-style-type: square;
     display: flex;
-    flex-flow: row wrap;
     gap: 20px;
     justify-content: center;
+    @media (max-width: 720px) {
+        flex-direction: column;
+        align-items: center;
+    }
 `
 const Li = styled.li`
     padding: 20px;
     width: 45%;
-    min-width: 200px;
     border-radius: 10px;
+    @media (max-width: 720px) {
+        width: 80%;
+    }
+    @media (max-width: 420px) {
+        width: 100%;
+    }
+    @media (max-width: 390px) {
+        font-size: 15px;
+    }
 `
 const Name = styled.p`
     text-transform: capitalize;
