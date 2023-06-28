@@ -5,7 +5,7 @@
 <h2>Overview</h2>
 
 <h3>The project</h3>
-<p>The application provides a list of Pokémons. In order to see more Pokémons, user can click on "Load more" and new Pokémons are added to the list. By clicking on a Pokémon, user can see it's details such as moves, abilities and types. It is also possible to sort Pokémons by type or search by name. If an invalid name is entered, an error message appears on screen. </p>
+<p>The application provides a list of Pokémons. In order to see more Pokémons, user can click on "Load more" and new Pokémons are added to the list. By clicking on a Pokémon, user can see it's details such as moves, abilities and types. It is also possible to sort Pokémons by type or search by name. If an invalid name is entered, an error message appears on screen.</p>
 
 <h3>Preview</h3>
 <h4>Desktop</h4>
@@ -59,6 +59,12 @@
     <li>React.js;</li>
     <li>Styled components;</li>
     <li>CSS.</li>
+</ul>
+
+<h3>Tools used and technical decisions</h3>
+<ul>
+    <li>React-icons: I chose to use react-icons because it has a wide range of icon libraries, it is easy to install and use and I can only import the icons that will be used.</li>
+    <li>useNavigate hook from react-router-dom: used to navigate to a new route when sort by type component has an option selected; it is a tool I found to connect one component to another using the hook and changing the url at the same time. The "Choose..." option (which is equivalent to removing the filter), I've set to navigate to the homepage, where all types are displayed by default, and there is no need for a unique url. In this case, since I couldn't figure out how to pass on the string 'pokemon' from the filter component's state as a prop to the homepage route, but only as part of the path, I decided to use an if-else statement in the pokémon list component to check if the string passed on is undefined, which happens when 'Choose...' option is selected. If so, it changes to 'pokemon' and all types are rendered.</li>
 </ul>
 
 <h3>What I practiced 💪🏽</h3>

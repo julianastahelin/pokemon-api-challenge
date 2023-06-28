@@ -29,10 +29,7 @@ function SortByType(props) {
 
     return (
         <Label>
-            Sort by tipe: <Select value={type} onChange={handleChange} style={{
-                color: theme.typeBackground,
-                backgroundColor: theme.inputBackground
-            }}>
+            Sort by tipe: <Select value={type} onChange={handleChange} style={{ color: theme.typeBackground, backgroundColor: theme.inputBackground}}>
                 {typeButtons.map((type, index) => {
                     return (
                         <Option value={type} key={type + index} style={{ color: theme.typeBackground, backgroundColor: theme.inputBackground }}>{type === 'pokemon' ? 'Choose...' : type}</Option>
