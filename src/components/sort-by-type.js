@@ -9,7 +9,7 @@ function SortByType(props) {
     const navigate = useNavigate();
     const { theme } = useContext(ThemeContext);
 
-    const typeButtons = ['pokemon', 'normal', 'fighting', 'flying', 'poison', 'ground', 'rock', 'bug', 'ghost', 'steel', 'fire', 'water', 'grass', 'electric', 'psychic', 'ice', 'dragon', 'dark', 'fairy'];
+    const typeButtons = ['pokemon', 'all types', 'normal', 'fighting', 'flying', 'poison', 'ground', 'rock', 'bug', 'ghost', 'steel', 'fire', 'water', 'grass', 'electric', 'psychic', 'ice', 'dragon', 'dark', 'fairy'];
 
     useEffect(() => {
         if (type === 'pokemon') {

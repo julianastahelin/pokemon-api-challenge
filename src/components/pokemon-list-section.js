@@ -29,7 +29,7 @@ function PokemonListSection() {
     }, [list.offset, click])
 
     useEffect(() => {
-        if (type === undefined) {
+        if (type === undefined || type === 'all types') {
             type = 'pokemon'
         }
         setSearchString(type)
