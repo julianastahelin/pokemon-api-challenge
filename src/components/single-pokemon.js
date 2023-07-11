@@ -57,7 +57,7 @@ function SinglePokemon(props) {
             setLoading(false);
         }
         fetchData();
-    }, [props.name])
+    }, [name])
 
     return (
         <Section style={{ color: theme.background, backgroundColor: theme.color, minHeight: window.innerHeight - 329 }}>
@@ -68,7 +68,7 @@ function SinglePokemon(props) {
                 : 
                 <>
                     <H2>{pokemon.name}</H2>
-                    {pokemon.name !== 'Oops! Pokémon not found' && pokemon.moves.length > 1 ?
+                    {pokemon.name !== 'Oops! Pokémon not found' && pokemon.moves.length ?
                         <>
                             <Image src={pokemon.sprites.other.dream_world.front_default} />
                             <P>Moves</P>
