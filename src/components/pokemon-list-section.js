@@ -13,10 +13,7 @@ function PokemonListSection() {
     const [searchString, setSearchString] = useState('pokemon');
     const [click, setClick] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [list, setlist] = useState({
-        pokemons: [],
-        offset: 0
-    });
+    const [list, setlist] = useState({ pokemons: [], offset: 0 });
     var { type } = useParams();
 
     useEffect(() => {
@@ -24,11 +21,10 @@ function PokemonListSection() {
             setLoading(true)
             let newPokemons = await getPokemons(searchString, list.offset)
             setlist(
-                list.pokemons.length > 0 ? { ...list, pokemons: [...list.pokemons, ...newPokemons] } : { ...list, pokemons: newPokemons }
+                list.pokemons.length ? {...list, pokemons: [...list.pokemons, ...newPokemons]} : {...list, pokemons: newPokemons}
             )
             setLoading(false)
         }
-
         fetchData()
     }, [list.offset, click])
 
@@ -37,29 +33,22 @@ function PokemonListSection() {
             type = 'pokemon'
         }
         setSearchString(type)
-        setlist(
-            { pokemons: [], offset: 0 }
-        )
+        setlist({ pokemons: [], offset: 0 })
         setClick(click ? false : true)
     }, [type])
 
     function handleClick() {
-        setlist({
-            ...list,
-            offset: list.offset + 10
-        })
+        setlist({ ...list, offset: list.offset + 10})
     }
 
     return (
-        <>
-            <Section style={{ color: theme.background, backgroundColor: theme.color, minHeight: window.innerHeight - 329}}>
+            <Section style={{color: theme.background, backgroundColor: theme.color, minHeight: window.innerHeight - 329}}>
                 <Ul>
                     <PokemonListItems pokemons={list.pokemons} />
                 </Ul>
                 {loading ? <Loading style={{ fill: theme.background }}/> : ''}
                 <LoadMoreBtn action={handleClick} />
             </Section>
-        </>
     )
 }
 
