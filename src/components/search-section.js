@@ -5,6 +5,7 @@ import SortByType from "./sort-by-type";
 import SearchForm from "./search-form";
 
 const SearchSection = forwardRef( (props, ref) => {
+    
     const { theme } = useContext(ThemeContext);
 
     return (

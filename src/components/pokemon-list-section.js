@@ -42,13 +42,13 @@ function PokemonListSection() {
     }
 
     return (
-            <Section style={{color: theme.background, backgroundColor: theme.color, minHeight: window.innerHeight - 329}}>
-                <Ul>
-                    <PokemonListItems pokemons={list.pokemons} />
-                </Ul>
-                {loading ? <Loading style={{ fill: theme.background }}/> : ''}
-                <LoadMoreBtn action={handleClick} />
-            </Section>
+        <Section style={{color: theme.background, backgroundColor: theme.color, minHeight: window.innerHeight - 329}}>
+            <Ul>
+                <PokemonListItems pokemons={list.pokemons} />
+            </Ul>
+            {loading ? <Loading style={{ fill: theme.background }}/> : ''}
+            <LoadMoreBtn action={handleClick} />
+        </Section>
     )
 }
 

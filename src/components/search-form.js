@@ -5,6 +5,7 @@ import { ThemeContext } from '../contexts/theme-context';
 import Button from './button';
 
 function SearchForm() {
+    
     const [name, setName] = useState('');
     const { theme } = useContext(ThemeContext);
     const navigate = useNavigate();
@@ -16,15 +17,13 @@ function SearchForm() {
     }
 
     return (
-        <>
-            <Form onSubmit={handleSubmit} style={{ color: theme.background, backgroundColor: theme.color }}>
-                <Label>Search by name:</Label>
-                <Div>
-                    <SearchInput value={name} name="name" type="text" onChange={e => setName(e.target.value)} style={{ color: theme.inputColor, background: theme.inputBackground }} />
-                    <Button type="submit" style={{ color: theme.color, backgroundColor: theme.background }}>Go</Button>
-                </Div>
-            </Form>
-        </>
+        <Form onSubmit={handleSubmit} style={{ color: theme.background, backgroundColor: theme.color }}>
+            <Label>Search by name:</Label>
+            <Div>
+                <SearchInput value={name} name="name" type="text" onChange={e => setName(e.target.value)} style={{ color: theme.inputColor, background: theme.inputBackground }} />
+                <Button type="submit" style={{ color: theme.color, backgroundColor: theme.background }}>Go</Button>
+            </Div>
+        </Form>
     )
 }
 
