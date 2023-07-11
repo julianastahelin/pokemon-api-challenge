@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { ThemeContext } from '../contexts/theme-context';
 import getSinglePokemon from '../service/get-single-pokemon';
 import Abilities from './ability';
+import {ReactComponent as Loading} from '../assets/loading.svg';
 
 function SinglePokemon(props) {
 
@@ -63,9 +64,7 @@ function SinglePokemon(props) {
         <Section style={{ color: theme.background, backgroundColor: theme.color, minHeight: window.innerHeight - 329 }}>
             <PokemonContainer style={{ color: theme.color, backgroundColor: theme.background }}>
 
-                {loading ? 
-                <svg style={{ fill: theme.color }} width="40" height="40" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><ellipse cx="12" cy="5" rx="4" ry="4"><animate id="spinner_jbYs" begin="0;spinner_JZdr.end" attributeName="cy" calcMode="spline" dur="0.375s" values="5;20" keySplines=".33,0,.66,.33" fill="freeze"/><animate begin="spinner_jbYs.end" attributeName="rx" calcMode="spline" dur="0.05s" values="4;4.8;4" keySplines=".33,0,.66,.33;.33,.66,.66,1"/><animate begin="spinner_jbYs.end" attributeName="ry" calcMode="spline" dur="0.05s" values="4;3;4" keySplines=".33,0,.66,.33;.33,.66,.66,1"/><animate id="spinner_ADF4" begin="spinner_jbYs.end" attributeName="cy" calcMode="spline" dur="0.025s" values="20;20.5" keySplines=".33,0,.66,.33"/><animate id="spinner_JZdr" begin="spinner_ADF4.end" attributeName="cy" calcMode="spline" dur="0.4s" values="20.5;5" keySplines=".33,.66,.66,1"/></ellipse></svg>
-                : 
+                {loading ? <Loading style={{ fill: theme.color }}/> : 
                 <>
                     <H2>{pokemon.name}</H2>
                     {pokemon.name !== 'Oops! Pokémon not found' && pokemon.moves.length ?
