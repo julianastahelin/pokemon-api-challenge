@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { FaRegSun, FaRegMoon} from 'react-icons/fa6';
-import { ThemeContext, themes } from '../../contexts/theme-context';
-import Button from '../button';
+import { ThemeContext, themes } from '../contexts/theme-context';
+import Button from './button';
 
 function ThemeTogglerButton() {
 

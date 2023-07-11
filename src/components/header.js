@@ -2,9 +2,9 @@ import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FaHouse } from 'react-icons/fa6';
-import { ThemeContext } from '../../contexts/theme-context';
-import ThemeTogglerButton from '../theme-toggler-button';
-import Button from '../button';
+import { ThemeContext } from '../contexts/theme-context';
+import ThemeTogglerButton from './theme-toggler-button';
+import Button from './button';
 
 function Header({resultReference, sendToParent}) {
 

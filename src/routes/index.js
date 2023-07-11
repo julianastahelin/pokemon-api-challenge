@@ -1,9 +1,9 @@
 import { useState, useRef } from 'react';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from '../components/header';
-import Pokemons from "./pokemons";
-import Pokemon from "./pokemon";
-import PokemonByName from "./pokemon-by-name";
+import Pokemons from "../pages/pokemons";
+import Pokemon from "../pages/pokemon";
+import PokemonByName from "../pages/pokemon-by-name";
 import SearchSection from '../components/search-section';
 import BackToTopBtn from "../components/back-to-top-btn";
 import Footer from '../components/footer';

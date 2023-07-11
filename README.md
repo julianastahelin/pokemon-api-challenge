@@ -9,12 +9,12 @@
 
 <h3>Preview</h3>
 <h4>Desktop</h4>
-<a href="https://pokemon-api-challenge-seven.vercel.app/"><img src="design/design-desktop.gif" alt="gif of project being displayed and used on desktop"></a>
+<a href="https://pokemon-api-challenge-seven.vercel.app/"><img src="docs/design-desktop.gif" alt="gif of project being displayed and used on desktop"></a>
 
 <h4>Tablet</h4>
-<a href="https://pokemon-api-challenge-seven.vercel.app/"><img src="design/design-tablet.gif" alt="gif showing project on tablet" style="width: 80%;"></a>
+<a href="https://pokemon-api-challenge-seven.vercel.app/"><img src="docs/design-tablet.gif" alt="gif showing project on tablet" style="width: 80%;"></a>
 <h4>Mobile</h4>
-<a href="https://pokemon-api-challenge-seven.vercel.app/"><img src="design/design-mobile.gif" alt="gif of project displayed on mobile" style="width: 30%;"></a>
+<a href="https://pokemon-api-challenge-seven.vercel.app/"><img src="docs/design-mobile.gif" alt="gif of project displayed on mobile" style="width: 30%;"></a>
 
 <h3>How to use the project</h3>
 <ul>

@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
-import { ThemeContext } from '../../contexts/theme-context';
-import getAbilities from '../../service/get-ability';
+import { ThemeContext } from '../contexts/theme-context';
+import getAbilities from '../service/get-ability';
 
 function Abilities(props) {
 

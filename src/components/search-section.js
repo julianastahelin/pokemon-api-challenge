@@ -1,8 +1,8 @@
 import { useContext,  forwardRef } from 'react';
 import styled from 'styled-components';
-import { ThemeContext } from "../../contexts/theme-context";
-import SortByType from "../sort-by-type";
-import SearchForm from "../search-form";
+import { ThemeContext } from "../contexts/theme-context";
+import SortByType from "./sort-by-type";
+import SearchForm from "./search-form";
 
 const SearchSection = forwardRef( (props, ref) => {
     const { theme } = useContext(ThemeContext);

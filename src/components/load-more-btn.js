@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import Button from '../button';
-import { ThemeContext } from '../../contexts/theme-context';
+import Button from './button';
+import { ThemeContext } from '../contexts/theme-context';
 
 function LoadMoreBtn(props) {
 

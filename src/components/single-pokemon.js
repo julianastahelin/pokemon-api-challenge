@@ -1,9 +1,9 @@
 import { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { ThemeContext } from '../../contexts/theme-context';
-import getSinglePokemon from '../../service/get-single-pokemon';
-import Abilities from '../ability';
+import { ThemeContext } from '../contexts/theme-context';
+import getSinglePokemon from '../service/get-single-pokemon';
+import Abilities from './ability';
 
 function SinglePokemon(props) {
 

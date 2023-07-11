@@ -1,8 +1,8 @@
 import { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { FaArrowUp } from 'react-icons/fa6';
-import { ThemeContext } from "../../contexts/theme-context";
-import Button from "../button";
+import { ThemeContext } from "../contexts/theme-context";
+import Button from "./button";
 
 function BackToTopBtn({resultReference}) {
 

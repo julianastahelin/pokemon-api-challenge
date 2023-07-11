@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { ThemeContext } from "../../contexts/theme-context";
-import getPokemons from "../../service/get-pokemons";
-import PokemonListItems from "../pokemon-list-items";
-import LoadMoreBtn from '../load-more-btn';
+import { ThemeContext } from "../contexts/theme-context";
+import getPokemons from "../service/get-pokemons";
+import PokemonListItems from "./pokemon-list-items";
+import LoadMoreBtn from './load-more-btn';
 
 function PokemonListSection() {
 

@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { ThemeContext } from "../../contexts/theme-context";
+import { ThemeContext } from "../contexts/theme-context";
 
 const PokemonListItems = (props) => {
 

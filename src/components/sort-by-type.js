@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { ThemeContext } from '../../contexts/theme-context';
+import { ThemeContext } from '../contexts/theme-context';
 
 function SortByType(props) {
 

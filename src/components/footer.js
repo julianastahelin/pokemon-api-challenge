@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import styled from 'styled-components';
-import { ThemeContext } from '../../contexts/theme-context';
+import { ThemeContext } from '../contexts/theme-context';
 
 function Footer() { 
 
