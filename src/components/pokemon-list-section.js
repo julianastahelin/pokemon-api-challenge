@@ -1,45 +1,13 @@
-import { useState, useEffect, useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useContext } from 'react';
 import styled from 'styled-components';
 import { ThemeContext } from "../contexts/theme-context";
-import getPokemons from "../service/get-pokemons";
 import PokemonListItems from "./pokemon-list-items";
 import LoadMoreBtn from './load-more-btn';
 import {ReactComponent as Loading} from '../assets/loading.svg';
 
-function PokemonListSection() {
+function PokemonListSection({ loading, list, handleClick }) {
 
     const { theme } = useContext(ThemeContext);
-    const [searchString, setSearchString] = useState('pokemon');
-    const [click, setClick] = useState(false);
-    const [loading, setLoading] = useState(false);
-    const [list, setlist] = useState({ pokemons: [], offset: 0 });
-    var { type } = useParams();
-
-    useEffect(() => {
-        async function fetchData() {
-            setLoading(true)
-            let newPokemons = await getPokemons(searchString, list.offset)
-            setlist(
-                list.pokemons.length ? {...list, pokemons: [...list.pokemons, ...newPokemons]} : {...list, pokemons: newPokemons}
-            )
-            setLoading(false)
-        }
-        fetchData()
-    }, [list.offset, click])
-
-    useEffect(() => {
-        if (type === undefined || type === 'all types') {
-            type = 'pokemon'
-        }
-        setSearchString(type)
-        setlist({ pokemons: [], offset: 0 })
-        setClick(click ? false : true)
-    }, [type])
-
-    function handleClick() {
-        setlist({ ...list, offset: list.offset + 10})
-    }
 
     return (
         <Section style={{color: theme.background, backgroundColor: theme.color, minHeight: window.innerHeight - 329}}>
@@ -47,7 +15,7 @@ function PokemonListSection() {
                 <PokemonListItems pokemons={list.pokemons} />
             </Ul>
             {loading ? <Loading style={{ fill: theme.background }}/> : ''}
-            <LoadMoreBtn action={handleClick} />
+            <LoadMoreBtn loadMore={handleClick} />
         </Section>
     )
 }

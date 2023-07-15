@@ -1,28 +1,26 @@
-import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
 import styled from 'styled-components';
 import { FaHouse } from 'react-icons/fa6';
-import { ThemeContext } from '../contexts/theme-context';
+import { ThemeContext } from "../contexts/theme-context";
 import ThemeTogglerButton from './theme-toggler-button';
 import Button from './button';
 
-function Header({resultReference, sendToParent}) {
+function Header({ scrollTop, resetType }) {
 
     const { theme } = useContext(ThemeContext);
-    const [ resetType, toggleType ] = useState(true);
 
-    function scrollTop() { 
-        resultReference.current.scrollIntoView({ behavior: 'smooth' });
-        resetType === true ? toggleType(false) : toggleType(true);
-        sendToParent(resetType);
+    function handleClick() {
+        scrollTop();
+        resetType();
     }
-
+    
     return (
         <Head style={{ color: theme.color, backgroundColor: theme.background }}>
             <H1>Pokédex</H1>
             <Nav>
                 <Link to='/'>
-                    <HomeButton style={{ color: theme.background, backgroundColor: theme.color }} onClick={scrollTop}>
+                    <HomeButton style={{ color: theme.background, backgroundColor: theme.color }} onClick={handleClick}>
                         <FaHouse />
                     </HomeButton>
                 </Link>

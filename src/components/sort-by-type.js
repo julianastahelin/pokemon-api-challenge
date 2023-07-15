@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { ThemeContext } from '../contexts/theme-context';
 
-function SortByType(props) {
+function SortByType({ reset }) {
 
     const [type, setType] = useState('pokemon');
     const navigate = useNavigate();
@@ -21,7 +21,7 @@ function SortByType(props) {
 
     useEffect(() => {
         setType('pokemon')
-    }, [props.resetType])
+    }, [reset])
 
     function handleChange(e) {
         setType(e.target.value)

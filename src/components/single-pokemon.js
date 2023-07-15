@@ -1,54 +1,34 @@
-import { useState, useEffect, useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useContext } from 'react';
 import styled from 'styled-components';
 import { ThemeContext } from '../contexts/theme-context';
-import getSinglePokemon from '../service/get-single-pokemon';
 import Abilities from './ability';
 import { ReactComponent as Loading } from '../assets/loading.svg';
 
-function SinglePokemon() {
+
+function SinglePokemon({ loading, pokemon, abilities }) {
 
     const { theme } = useContext(ThemeContext);
-    const { name } = useParams();
-    const [loading, setLoading] = useState(false);
-    const [pokemon, setPokemon] = useState({
-        name: '',
-        moves: [ {move: {name: ''}} ],
-        sprites: {other: {dream_world: {front_default: ''}}},
-        abilities: [ {ability: {name: '', url: ''}} ],
-        types: [ {type: {name: ''}} ]
-    });
-
-    useEffect(() => {
-        async function fetchData() {
-            setLoading(true);
-            let newPokemon = await getSinglePokemon(name);
-            setPokemon(newPokemon);
-            setLoading(false);
-        }
-        fetchData();
-    }, [name])
 
     return (
         <Section style={{ color: theme.background, backgroundColor: theme.color, minHeight: window.innerHeight - 329 }}>
             <PokemonContainer style={{ color: theme.color, backgroundColor: theme.background }}>
                 {loading ? <Loading style={{ fill: theme.color }} /> : 
-                    pokemon.name ?
+                    pokemon ?
                         <>
                             <H2>{pokemon.name}</H2>
                             <Image src={pokemon.sprites.other.dream_world.front_default} />
                             <P>Moves</P>
                             <MovesList>
-                            {pokemon.moves ? pokemon.moves.map((move, index) => <MoveLi key={index}>{move.move.name}</MoveLi>) : 'No moves'}
+                                {pokemon.moves ? pokemon.moves.map((move, index) => <MoveLi key={index}>{move.move.name}</MoveLi>) : 'No moves'}
                             </MovesList>
                             <P>Abilities</P>
-                            {pokemon.abilities ? <Abilities abilities={pokemon.abilities} /> : 'No abilities'}
+                            {pokemon.abilities ? <Abilities abilities={abilities} /> : 'No abilities'}
                             <P>Type</P>
                             <TypesList>
-                            {pokemon.types ? pokemon.types.map((type, index) => <TypeLi style={{ color: theme.typeColor, background: theme.typeBackground }} key={index}>{type.type.name}</TypeLi>) : 'No types'}
+                                {pokemon.types ? pokemon.types.map((type, index) => <TypeLi style={{ color: theme.typeColor, background: theme.typeBackground }} key={index}>{type.type.name}</TypeLi>) : 'No types'}
                             </TypesList>
                         </>
-                    : <Error>{pokemon.message}</Error>
+                    : <Error>Oops! Pokémon not found.</Error>
                 }
             </PokemonContainer>
         </Section>

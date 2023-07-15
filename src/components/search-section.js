@@ -1,4 +1,4 @@
-import { useContext,  forwardRef } from 'react';
+import { useContext, forwardRef } from 'react';
 import styled from 'styled-components';
 import { ThemeContext } from "../contexts/theme-context";
 import SortByType from "./sort-by-type";
@@ -10,7 +10,7 @@ const SearchSection = forwardRef( (props, ref) => {
 
     return (
         <Div ref={ref} style={{ color: theme.background, backgroundColor: theme.color }}>
-            <SortByType resetType={props.resetType}/>
+            <SortByType reset={props.reset}/>
             <SearchForm />
         </Div>
     )

@@ -1,14 +1,14 @@
 import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { ThemeContext } from '../contexts/theme-context';
+import { ThemeContext } from "../contexts/theme-context";
 import Button from './button';
 
 function SearchForm() {
     
     const [name, setName] = useState('');
-    const { theme } = useContext(ThemeContext);
     const navigate = useNavigate();
+    const { theme } = useContext(ThemeContext);
 
     function handleSubmit(event) {
         event.preventDefault();

@@ -1,25 +1,15 @@
-import { useState, useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import styled from 'styled-components';
 import { ThemeContext } from '../contexts/theme-context';
-import getAbilities from '../service/get-ability';
 
-function Abilities(props) {
+function Abilities({abilities}) {
 
-    const { theme } = useContext(ThemeContext)
-    const [abilities, setAbilities] = useState([{ effect_entries: [{ effect: '', language: { name: '' } }], name: '' }])
-
-    useEffect(() => {
-        async function fetchAbilities() {
-            const newAbilities = await getAbilities(props.abilities)
-            setAbilities(newAbilities)
-        }
-        fetchAbilities()
-    }, [])
+    const { theme } = useContext(ThemeContext);
 
     return (
         <Ul>
             {abilities.map((item, index) => item.name.length ?
-                <Li key={item + index} style={{ color: theme.abilityColor, background: theme.abilityBackground }}>
+                <Li key={item+index} style={{ color: theme.abilityColor, background: theme.abilityBackground }}>
                     <Name>{item.name}</Name>
                     {item.effect_entries.filter((entrie) => entrie.language.name === 'en').map((item) => <P key={item}>{item.effect}</P>)}
                 </Li>

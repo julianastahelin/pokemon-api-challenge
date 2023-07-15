@@ -1,15 +1,15 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
 import { ThemeContext } from "../contexts/theme-context";
+import styled from 'styled-components';
 
-const PokemonListItems = (props) => {
-
-    const { theme } = useContext(ThemeContext)
+const PokemonListItems = ({ pokemons }) => {
+    
+    const { theme } = useContext(ThemeContext);
     
     return (
         <>
-            {props.pokemons.map((pokemon, index) => {
+            {pokemons.map((pokemon, index) => {
                 return (
                     <PokemonContainer key={pokemon.name+index} style={{ color: theme.color, backgroundColor: theme.background }}>
                         <Link to={`/pokemon/${pokemon.name}`} style={{ color: theme.color, textTransform: "capitalize" }}>

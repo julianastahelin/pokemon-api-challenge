@@ -11,23 +11,34 @@ import Footer from '../components/footer';
 function AppRoutes() {
 
     const resultRef = useRef(null);
-    const [ type, setType ] = useState('');
 
-    function resetTypeAction(dataFromHeader) {
-        setType(dataFromHeader);
+    const [ visible, setVisible ] = useState(false);
+    function toggleBtnVisibility() {
+        const distanceToTop = document.documentElement.scrollTop;
+        distanceToTop > 100 ? setVisible(true) : setVisible(false);
     }
- 
+    window.addEventListener('scroll', toggleBtnVisibility);
+
+    const [ reset, toggleReset ] = useState(true);
+
+    function resetType() {
+        reset === true ? toggleReset(false) : toggleReset(true);
+    }
+    function scrollTop() { 
+        resultRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  
     return (
         <BrowserRouter>
-            <Header resultReference={resultRef} sendToParent={resetTypeAction} />
-            <SearchSection ref={resultRef} resetType={type} />
+            <Header scrollTop={scrollTop} resetType={resetType} />
+            <SearchSection ref={resultRef} reset={reset} />
             <Routes>
                 <Route exact path="/" element={<Pokemons />} />
                 <Route exact path="/type/:type" element={<Pokemons />} />
                 <Route exact path="/pokemon/:name" element={<Pokemon />} />
                 <Route exact path="/pokemon/search/:name" element={<PokemonByName />} />
             </Routes>
-            <BackToTopBtn resultReference={resultRef} />
+            <BackToTopBtn resultReference={resultRef} visible={visible} />
             <Footer />
         </BrowserRouter>
     )

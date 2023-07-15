@@ -1,11 +1,11 @@
 import { useContext } from 'react';
 import styled from 'styled-components';
-import { ThemeContext } from '../contexts/theme-context';
+import { ThemeContext } from "../contexts/theme-context";
 
 function Footer() { 
-
-    const { theme } = useContext(ThemeContext)
     
+    const { theme } = useContext(ThemeContext);
+
     return (
         <FooterBar style={{ color: theme.color, backgroundColor: theme.background }}>
             <A href="https://github.com/julianastahelin" target="_blank" style={{ color: theme.color }}>@Juliana Stahelin 2023</A>

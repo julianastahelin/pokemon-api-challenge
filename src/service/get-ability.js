@@ -3,7 +3,7 @@ async function getAbilities(pokemonAbilities) {
         const ability = await fetch(item.ability.url);
         return await ability.json();
     }) 
-    return await Promise.all(urlsFetched)
+    return await Promise.all(urlsFetched);
 }
 
 export default getAbilities

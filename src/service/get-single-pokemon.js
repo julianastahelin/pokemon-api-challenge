@@ -3,7 +3,7 @@ async function getSinglePokemon(name) {
     if (response.status === 200) {
         return await response.json();
     } else {
-        return { message: 'Oops! Pokémon not found!' };
+        return null;
     }
 }
 

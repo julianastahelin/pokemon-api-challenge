@@ -1,20 +1,12 @@
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import styled from 'styled-components';
-import { FaArrowUp } from 'react-icons/fa6';
 import { ThemeContext } from "../contexts/theme-context";
+import { FaArrowUp } from 'react-icons/fa6';
 import Button from "./button";
 
-function BackToTopBtn({resultReference}) {
+function BackToTopBtn({resultReference, visible }) {
 
-    const [ visible, setVisible ] = useState(false);
     const { theme } = useContext(ThemeContext);
-
-    function toggleBtnVisibility() {
-        const distanceToTop = document.documentElement.scrollTop;
-        distanceToTop > 100 ? setVisible(true) : setVisible(false);
-    }
-
-    window.addEventListener('scroll', toggleBtnVisibility);
 
     function scrollTop() { 
         resultReference.current.scrollIntoView({ behavior: 'smooth' });

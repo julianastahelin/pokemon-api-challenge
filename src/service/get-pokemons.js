@@ -14,9 +14,9 @@ async function getPokemons(list, offset) {
    let pokemons = names.map(async (name) => {
         const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
         const pokemon = await response.json();
-        return pokemon
+        return pokemon;
     })
-    return Promise.all(pokemons)
+    return Promise.all(pokemons);
 }
 
 export default getPokemons
