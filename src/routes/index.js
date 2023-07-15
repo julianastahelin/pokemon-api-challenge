@@ -27,7 +27,7 @@ function AppRoutes() {
     function scrollTop() { 
         resultRef.current.scrollIntoView({ behavior: 'smooth' });
     }
-  
+
     return (
         <BrowserRouter>
             <Header scrollTop={scrollTop} resetType={resetType} />
@@ -38,7 +38,7 @@ function AppRoutes() {
                 <Route exact path="/pokemon/:name" element={<Pokemon />} />
                 <Route exact path="/pokemon/search/:name" element={<PokemonByName />} />
             </Routes>
-            <BackToTopBtn resultReference={resultRef} visible={visible} />
+            <BackToTopBtn scrollTop={scrollTop} visible={visible} />
             <Footer />
         </BrowserRouter>
     )

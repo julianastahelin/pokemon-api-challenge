@@ -4,13 +4,9 @@ import { ThemeContext } from "../contexts/theme-context";
 import { FaArrowUp } from 'react-icons/fa6';
 import Button from "./button";
 
-function BackToTopBtn({resultReference, visible }) {
+function BackToTopBtn({ scrollTop, visible }) {
 
     const { theme } = useContext(ThemeContext);
-
-    function scrollTop() { 
-        resultReference.current.scrollIntoView({ behavior: 'smooth' });
-    }
 
     return (
         <ScrollTopButton onClick={scrollTop} style={{ color: theme.inputColor, backgroundColor: theme.inputBackground, borderColor: theme.color, display: visible ? 'block' : 'none' }}>
