@@ -4,7 +4,7 @@ import getAbilities from '../service/get-ability';
 import getSinglePokemon from '../service/get-single-pokemon';
 import SinglePokemon from "../components/single-pokemon";
 
-function Pokemon() {
+function Pokemon({scrollTop}) {
 
     const { name } = useParams();
     const [loading, setLoading] = useState(false);
@@ -18,6 +18,7 @@ function Pokemon() {
     const [abilities, setAbilities] = useState([{ effect_entries: [{ effect: '', language: { name: '' } }], name: '' }])
 
     useEffect(() => {
+        scrollTop();
         async function fetchData() {
             setLoading(true);
             let newPokemon = await getSinglePokemon(name);

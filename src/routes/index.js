@@ -35,7 +35,7 @@ function AppRoutes() {
             <Routes>
                 <Route exact path="/" element={<Pokemons />} />
                 <Route exact path="/type/:type" element={<Pokemons />} />
-                <Route exact path="/pokemon/:name" element={<Pokemon />} />
+                <Route exact path="/pokemon/:name" element={<Pokemon scrollTop={scrollTop} />} />
                 <Route exact path="/pokemon/search/:name" element={<PokemonByName />} />
             </Routes>
             <BackToTopBtn scrollTop={scrollTop} visible={visible} />
