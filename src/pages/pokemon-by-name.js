@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { ThemeContext } from "../contexts/theme-context";
 import Pokemon from "./pokemon";
 
-function PokemonByName() {
+function PokemonByName({scrollTop}) {
 
     const { name } = useParams();
     const { theme } = useContext(ThemeContext);
@@ -12,7 +12,7 @@ function PokemonByName() {
     return (
         <div style={{minHeight: window.innerHeight - 329}}>
             <H2 style={{color: theme.background, backgroundColor: theme.color}}>Search for: '{name}'</H2>
-            <Pokemon />
+            <Pokemon scrollTop={scrollTop} />
         </div>
     )
 }
