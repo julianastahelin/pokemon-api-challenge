@@ -18,7 +18,7 @@ function BackToTopBtn({ scrollTop, visible }) {
 const ScrollTopButton = styled(Button)`
     position: fixed; 
     cursor: pointer;
-    right: 60px;
+    right: 10px;
     bottom: 40px;
     z-index: 1;
     font-size: 18px;
