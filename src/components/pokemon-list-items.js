@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ThemeContext } from "../contexts/theme-context";
 import styled from 'styled-components';
 
-const PokemonListItems = ({ pokemons }) => {
+const PokemonListItems = ({pokemons}) => {
     
     const { theme } = useContext(ThemeContext);
     

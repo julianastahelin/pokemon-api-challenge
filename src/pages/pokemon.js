@@ -30,7 +30,7 @@ function Pokemon({scrollTop}) {
 
     useEffect(() => {
         async function fetchAbilities() {
-            if (pokemon.abilities) {
+            if (pokemon && pokemon.abilities) {
                 const newAbilities = await getAbilities(pokemon.abilities);
                 setAbilities(newAbilities);
             }
